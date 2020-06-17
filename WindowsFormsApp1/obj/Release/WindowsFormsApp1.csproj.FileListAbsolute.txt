@@ -6,3 +6,4 @@ C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Wind
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csprojAssemblyReference.cache

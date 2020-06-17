@@ -51,5 +51,22 @@ namespace WindowsFormsApp1
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtbarcode_TextChanged(object sender, EventArgs e)
+        {
+            string code = txtbarcode.Text;
+            if (code == "") lblcode.Text = "";
+            if (!string.IsNullOrEmpty(code))
+            {
+                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                {
+                    if (dr.Cells[0].Value.ToString().Equals(code))
+                    {
+                        lblcode.Text = $"Value = {dr.Cells[1].Value.ToString()}";
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@
             this.txtfileupload = new System.Windows.Forms.TextBox();
             this.btnsheet = new System.Windows.Forms.Button();
             this.txtsheet = new System.Windows.Forms.TextBox();
+            this.lblcode = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.txtbarcode.Name = "txtbarcode";
             this.txtbarcode.Size = new System.Drawing.Size(216, 20);
             this.txtbarcode.TabIndex = 0;
+            this.txtbarcode.TextChanged += new System.EventHandler(this.txtbarcode_TextChanged);
             // 
             // lblbarcode
             // 
@@ -107,12 +109,22 @@
             this.txtsheet.Name = "txtsheet";
             this.txtsheet.Size = new System.Drawing.Size(577, 20);
             this.txtsheet.TabIndex = 7;
+            this.txtsheet.Text = "sheet1";
+            // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Location = new System.Drawing.Point(286, 46);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(0, 13);
+            this.lblcode.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblcode);
             this.Controls.Add(this.txtsheet);
             this.Controls.Add(this.btnsheet);
             this.Controls.Add(this.txtfileupload);
@@ -139,5 +151,6 @@
         private System.Windows.Forms.TextBox txtfileupload;
         private System.Windows.Forms.Button btnsheet;
         private System.Windows.Forms.TextBox txtsheet;
+        private System.Windows.Forms.Label lblcode;
     }
 }
