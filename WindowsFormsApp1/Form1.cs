@@ -9,14 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Net.NetworkInformation;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Json;
+//using System.Runtime.Serialization.Json;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        TcpClient tcpClient;
+        NetworkStream stream;
+
         public Form1()
         {
             InitializeComponent();
+            btnDisconnect.Enabled = false;
         }
 
         private void btnupload_Click(object sender, EventArgs e)
@@ -66,6 +75,102 @@ namespace WindowsFormsApp1
                         break;
                     }
                 }
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void applicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tcp/Ip Demo App V1.0", "About Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tcpClient = new TcpClient(txtipaddress.Text, Convert.ToInt32(txtport.Text.Trim()));
+                if (tcpClient.Client.Connected)
+                {
+                    txtstatus.AppendText($"Connected to remote host {Environment.NewLine}");
+                    if (btnconnect.Enabled == true) btnconnect.Enabled = false;
+                    if (btnDisconnect.Enabled == false) btnDisconnect.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Ping myPing = new Ping();
+                PingReply reply = myPing.Send(txtipaddress.Text, Convert.ToInt32(txtport.Text));
+                if (reply != null)
+                {
+                    txtstatus.AppendText($"Ping : {reply.Status} at Address : {reply.Address} {Environment.NewLine}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcpClient.Connected && txtMessage.Text.Length > 0)
+                {
+                    // Translate the passed message into ASCII and store it as a Byte array.
+                    byte[] data = Encoding.ASCII.GetBytes(txtMessage.Text.Trim());
+
+                    // Get a client stream for reading and writing.
+                    stream = tcpClient.GetStream();
+                    
+                    // Send the message to the connected TcpServer.
+                    stream.Write(data, 0, data.Length);
+                    txtstatus.AppendText($"Sent: {txtMessage.Text}{Environment.NewLine}");
+                    txtMessage.Text = "";
+
+                }
+                else
+                {
+                    MessageBox.Show("The server has lost connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (btnDisconnect.Enabled == true) btnDisconnect.Enabled = false;
+                    if (btnconnect.Enabled == false) btnconnect.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcpClient.Connected)
+                {
+                    tcpClient.Client.Close();
+                    txtstatus.AppendText($"Remote Host Disconnected.{Environment.NewLine}");
+                }
+                else
+                    MessageBox.Show("The server has disconnected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (btnDisconnect.Enabled == true) btnDisconnect.Enabled = false;
+                if (btnconnect.Enabled == false) btnconnect.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
