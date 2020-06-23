@@ -58,6 +58,8 @@ namespace WindowsFormsApp1
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnAutosend = new System.Windows.Forms.Button();
             this.btnDisableAutoSend = new System.Windows.Forms.Button();
+            this.btnStartPrint = new System.Windows.Forms.Button();
+            this.btnStopPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -195,7 +197,7 @@ namespace WindowsFormsApp1
             // 
             this.groupBox2.Controls.Add(this.txtbarcode);
             this.groupBox2.Controls.Add(this.lblbarcode);
-            this.groupBox2.Location = new System.Drawing.Point(473, 153);
+            this.groupBox2.Location = new System.Drawing.Point(473, 143);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(379, 66);
             this.groupBox2.TabIndex = 11;
@@ -247,7 +249,7 @@ namespace WindowsFormsApp1
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Location = new System.Drawing.Point(473, 44);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(379, 103);
+            this.groupBox3.Size = new System.Drawing.Size(379, 93);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Connect To Printer";
@@ -265,7 +267,7 @@ namespace WindowsFormsApp1
             // 
             // btnconnect
             // 
-            this.btnconnect.Location = new System.Drawing.Point(176, 61);
+            this.btnconnect.Location = new System.Drawing.Point(180, 61);
             this.btnconnect.Name = "btnconnect";
             this.btnconnect.Size = new System.Drawing.Size(75, 23);
             this.btnconnect.TabIndex = 14;
@@ -285,17 +287,17 @@ namespace WindowsFormsApp1
             // 
             // txtstatus
             // 
-            this.txtstatus.Location = new System.Drawing.Point(473, 225);
+            this.txtstatus.Location = new System.Drawing.Point(473, 215);
             this.txtstatus.Multiline = true;
             this.txtstatus.Name = "txtstatus";
             this.txtstatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtstatus.Size = new System.Drawing.Size(352, 95);
+            this.txtstatus.Size = new System.Drawing.Size(379, 95);
             this.txtstatus.TabIndex = 0;
             this.txtstatus.TextChanged += new System.EventHandler(this.txtbarcode_TextChanged);
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(750, 377);
+            this.btnSend.Location = new System.Drawing.Point(777, 356);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 14;
@@ -305,15 +307,15 @@ namespace WindowsFormsApp1
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(473, 337);
+            this.txtMessage.Location = new System.Drawing.Point(473, 316);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(352, 20);
+            this.txtMessage.Size = new System.Drawing.Size(379, 20);
             this.txtMessage.TabIndex = 0;
             this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
             // 
             // btnAutosend
             // 
-            this.btnAutosend.Location = new System.Drawing.Point(473, 377);
+            this.btnAutosend.Location = new System.Drawing.Point(473, 356);
             this.btnAutosend.Name = "btnAutosend";
             this.btnAutosend.Size = new System.Drawing.Size(112, 23);
             this.btnAutosend.TabIndex = 15;
@@ -323,7 +325,7 @@ namespace WindowsFormsApp1
             // 
             // btnDisableAutoSend
             // 
-            this.btnDisableAutoSend.Location = new System.Drawing.Point(591, 377);
+            this.btnDisableAutoSend.Location = new System.Drawing.Point(591, 356);
             this.btnDisableAutoSend.Name = "btnDisableAutoSend";
             this.btnDisableAutoSend.Size = new System.Drawing.Size(112, 23);
             this.btnDisableAutoSend.TabIndex = 15;
@@ -331,12 +333,34 @@ namespace WindowsFormsApp1
             this.btnDisableAutoSend.UseVisualStyleBackColor = true;
             this.btnDisableAutoSend.Click += new System.EventHandler(this.btnDisableAutoSend_Click);
             // 
+            // btnStartPrint
+            // 
+            this.btnStartPrint.Location = new System.Drawing.Point(473, 387);
+            this.btnStartPrint.Name = "btnStartPrint";
+            this.btnStartPrint.Size = new System.Drawing.Size(112, 23);
+            this.btnStartPrint.TabIndex = 15;
+            this.btnStartPrint.Text = "Start Print";
+            this.btnStartPrint.UseVisualStyleBackColor = true;
+            this.btnStartPrint.Click += new System.EventHandler(this.btnStartPrint_Click);
+            // 
+            // btnStopPrint
+            // 
+            this.btnStopPrint.Location = new System.Drawing.Point(591, 387);
+            this.btnStopPrint.Name = "btnStopPrint";
+            this.btnStopPrint.Size = new System.Drawing.Size(112, 23);
+            this.btnStopPrint.TabIndex = 15;
+            this.btnStopPrint.Text = "Stop Print";
+            this.btnStopPrint.UseVisualStyleBackColor = true;
+            this.btnStopPrint.Click += new System.EventHandler(this.btnStopPrint_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 473);
+            this.ClientSize = new System.Drawing.Size(889, 445);
             this.Controls.Add(this.btnDisableAutoSend);
+            this.Controls.Add(this.btnStopPrint);
+            this.Controls.Add(this.btnStartPrint);
             this.Controls.Add(this.btnAutosend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtstatus);
@@ -346,6 +370,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblupload);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Demo App";
@@ -395,5 +420,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnAutosend;
         private System.Windows.Forms.Button btnDisableAutoSend;
+        private System.Windows.Forms.Button btnStartPrint;
+        private System.Windows.Forms.Button btnStopPrint;
     }
 }

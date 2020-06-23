@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
             btnDisconnect.Enabled = false;
             btnDisableAutoSend.Enabled = false;
+            btnupload.Focus();
         }
 
         private void btnupload_Click(object sender, EventArgs e)
@@ -64,18 +65,31 @@ namespace WindowsFormsApp1
 
         private void txtbarcode_TextChanged(object sender, EventArgs e)
         {
-            string code = txtbarcode.Text;
-            if (code == "") txtMessage.Text = "";
-            if (!string.IsNullOrEmpty(code))
+            try
             {
-                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                string code = txtbarcode.Text;
+                if (code == "") txtMessage.Text = "";
+                if (!string.IsNullOrEmpty(code))
                 {
-                    if (dr.Cells[0].Value.ToString().Equals(code))
+                    foreach (DataGridViewRow dr in dataGridView1.Rows)
                     {
-                        txtMessage.Text = $"<STX>DATA,{dr.Cells[1].Value.ToString()}<ETX>";
-                        break;
+                        if (dr.Cells[0].Value.ToString().Equals(code))
+                        {
+                            string msg = "";
+                            for (int i = 1; i < dr.Cells.Count; i++)
+                            {
+                                msg += dr.Cells[i].Value + ";";
+                            }
+                            msg = msg.Remove(msg.Length - 1, 1);
+                            txtMessage.Text = $"<STX>DATA;{msg}<ETX>";
+                            break;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -178,10 +192,17 @@ namespace WindowsFormsApp1
 
         private void txtMessage_TextChanged(object sender, EventArgs e)
         {
-            if (btnAutosend.Enabled == true) return;
-            if (string.IsNullOrEmpty(txtMessage.Text)) return;
-            if (txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>")) btnSend_Click(sender, e);
-            txtbarcode.Focus();
+            try
+            {
+                if (btnAutosend.Enabled == true) return;
+                if (string.IsNullOrEmpty(txtMessage.Text)) return;
+                if (txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>")) btnSend_Click(sender, e);
+                txtbarcode.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAutosend_Click(object sender, EventArgs e)
@@ -194,6 +215,40 @@ namespace WindowsFormsApp1
         {
             btnAutosend.Enabled = true;
             btnDisableAutoSend.Enabled = false;
+        }
+
+        private void btnStartPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcpClient != null && tcpClient.Connected)
+                {
+                    txtMessage.Text = "<STX>STAR<ETX>";
+                    btnSend_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                txtMessage.Text = "";
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStopPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcpClient != null && tcpClient.Connected)
+                {
+                    txtMessage.Text = "<STX>STOP<ETX>";
+                    btnSend_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                txtMessage.Text = "";
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
