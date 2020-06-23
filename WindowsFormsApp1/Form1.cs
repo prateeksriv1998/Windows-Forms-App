@@ -13,7 +13,7 @@ using System.Net.NetworkInformation;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Json;
-//using System.Runtime.Serialization.Json;
+using System.Threading;
 
 namespace WindowsFormsApp1
 {
@@ -141,6 +141,7 @@ namespace WindowsFormsApp1
                     txtstatus.AppendText($"Sent: {txtMessage.Text}{Environment.NewLine}");
                     txtMessage.Text = "";
                     txtbarcode.Text = "";
+                    txtbarcode.Focus();
                 }
                 else
                 {
@@ -180,6 +181,7 @@ namespace WindowsFormsApp1
             if (btnAutosend.Enabled == true) return;
             if (string.IsNullOrEmpty(txtMessage.Text)) return;
             if (txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>")) btnSend_Click(sender, e);
+            txtbarcode.Focus();
         }
 
         private void btnAutosend_Click(object sender, EventArgs e)
