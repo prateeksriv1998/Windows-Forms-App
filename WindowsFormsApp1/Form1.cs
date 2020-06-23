@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             btnDisconnect.Enabled = false;
+            btnDisableAutoSend.Enabled = false;
         }
 
         private void btnupload_Click(object sender, EventArgs e)
@@ -64,14 +65,14 @@ namespace WindowsFormsApp1
         private void txtbarcode_TextChanged(object sender, EventArgs e)
         {
             string code = txtbarcode.Text;
-            if (code == "") lblcode.Text = "";
+            if (code == "") txtMessage.Text = "";
             if (!string.IsNullOrEmpty(code))
             {
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
                     if (dr.Cells[0].Value.ToString().Equals(code))
                     {
-                        lblcode.Text = $"Value = {dr.Cells[1].Value.ToString()}";
+                        txtMessage.Text = $"<STX>DATA,{dr.Cells[1].Value.ToString()}<ETX>";
                         break;
                     }
                 }
@@ -134,12 +135,12 @@ namespace WindowsFormsApp1
 
                     // Get a client stream for reading and writing.
                     stream = tcpClient.GetStream();
-                    
+
                     // Send the message to the connected TcpServer.
                     stream.Write(data, 0, data.Length);
                     txtstatus.AppendText($"Sent: {txtMessage.Text}{Environment.NewLine}");
                     txtMessage.Text = "";
-
+                    txtbarcode.Text = "";
                 }
                 else
                 {
@@ -172,6 +173,25 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtMessage_TextChanged(object sender, EventArgs e)
+        {
+            if (btnAutosend.Enabled == true) return;
+            if (string.IsNullOrEmpty(txtMessage.Text)) return;
+            if (txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>")) btnSend_Click(sender, e);
+        }
+
+        private void btnAutosend_Click(object sender, EventArgs e)
+        {
+            btnAutosend.Enabled = false;
+            btnDisableAutoSend.Enabled = true;
+        }
+
+        private void btnDisableAutoSend_Click(object sender, EventArgs e)
+        {
+            btnAutosend.Enabled = true;
+            btnDisableAutoSend.Enabled = false;
         }
     }
 }

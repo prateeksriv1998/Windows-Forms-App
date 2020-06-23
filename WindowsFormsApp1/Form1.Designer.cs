@@ -38,7 +38,6 @@ namespace WindowsFormsApp1
             this.txtfileupload = new System.Windows.Forms.TextBox();
             this.btnsheet = new System.Windows.Forms.Button();
             this.txtsheet = new System.Windows.Forms.TextBox();
-            this.lblcode = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +56,8 @@ namespace WindowsFormsApp1
             this.txtstatus = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
+            this.btnAutosend = new System.Windows.Forms.Button();
+            this.btnDisableAutoSend = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -134,14 +135,6 @@ namespace WindowsFormsApp1
             this.txtsheet.Size = new System.Drawing.Size(251, 20);
             this.txtsheet.TabIndex = 7;
             this.txtsheet.Text = "sheet1";
-            // 
-            // lblcode
-            // 
-            this.lblcode.AutoSize = true;
-            this.lblcode.Location = new System.Drawing.Point(303, 34);
-            this.lblcode.Name = "lblcode";
-            this.lblcode.Size = new System.Drawing.Size(0, 13);
-            this.lblcode.TabIndex = 8;
             // 
             // menuStrip1
             // 
@@ -237,7 +230,7 @@ namespace WindowsFormsApp1
             // 
             // txtport
             // 
-            this.txtport.Location = new System.Drawing.Point(275, 31);
+            this.txtport.Location = new System.Drawing.Point(277, 31);
             this.txtport.Name = "txtport";
             this.txtport.Size = new System.Drawing.Size(77, 20);
             this.txtport.TabIndex = 13;
@@ -250,7 +243,6 @@ namespace WindowsFormsApp1
             this.groupBox3.Controls.Add(this.btnping);
             this.groupBox3.Controls.Add(this.txtipaddress);
             this.groupBox3.Controls.Add(this.txtport);
-            this.groupBox3.Controls.Add(this.lblcode);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Location = new System.Drawing.Point(473, 44);
@@ -263,7 +255,7 @@ namespace WindowsFormsApp1
             // btnDisconnect
             // 
             this.btnDisconnect.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnDisconnect.Location = new System.Drawing.Point(275, 61);
+            this.btnDisconnect.Location = new System.Drawing.Point(279, 61);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(75, 23);
             this.btnDisconnect.TabIndex = 15;
@@ -317,12 +309,35 @@ namespace WindowsFormsApp1
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(352, 20);
             this.txtMessage.TabIndex = 0;
+            this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
+            // 
+            // btnAutosend
+            // 
+            this.btnAutosend.Location = new System.Drawing.Point(473, 377);
+            this.btnAutosend.Name = "btnAutosend";
+            this.btnAutosend.Size = new System.Drawing.Size(112, 23);
+            this.btnAutosend.TabIndex = 15;
+            this.btnAutosend.Text = "Enable Autosend";
+            this.btnAutosend.UseVisualStyleBackColor = true;
+            this.btnAutosend.Click += new System.EventHandler(this.btnAutosend_Click);
+            // 
+            // btnDisableAutoSend
+            // 
+            this.btnDisableAutoSend.Location = new System.Drawing.Point(591, 377);
+            this.btnDisableAutoSend.Name = "btnDisableAutoSend";
+            this.btnDisableAutoSend.Size = new System.Drawing.Size(112, 23);
+            this.btnDisableAutoSend.TabIndex = 15;
+            this.btnDisableAutoSend.Text = "Disable AutoSend";
+            this.btnDisableAutoSend.UseVisualStyleBackColor = true;
+            this.btnDisableAutoSend.Click += new System.EventHandler(this.btnDisableAutoSend_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 473);
+            this.Controls.Add(this.btnDisableAutoSend);
+            this.Controls.Add(this.btnAutosend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtstatus);
             this.Controls.Add(this.btnSend);
@@ -360,7 +375,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox txtfileupload;
         private System.Windows.Forms.Button btnsheet;
         private System.Windows.Forms.TextBox txtsheet;
-        private System.Windows.Forms.Label lblcode;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
@@ -379,5 +393,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.Button btnAutosend;
+        private System.Windows.Forms.Button btnDisableAutoSend;
     }
 }
