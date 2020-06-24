@@ -180,7 +180,9 @@ namespace WindowsFormsApp1
                     txtstatus.AppendText($"Remote Host Disconnected.{Environment.NewLine}");
                 }
                 else
+                {
                     MessageBox.Show("The server has disconnected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 if (btnDisconnect.Enabled == true) btnDisconnect.Enabled = false;
                 if (btnconnect.Enabled == false) btnconnect.Enabled = true;
             }
@@ -194,10 +196,14 @@ namespace WindowsFormsApp1
         {
             try
             {
-                if (btnAutosend.Enabled == true) return;
-                if (string.IsNullOrEmpty(txtMessage.Text)) return;
-                if (txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>")) btnSend_Click(sender, e);
-                txtbarcode.Focus();
+                if (!string.IsNullOrEmpty(txtMessage.Text) && txtMessage.Text.StartsWith("<STX>") && txtMessage.Text.EndsWith("<ETX>"))
+                {
+                    if (btnAutosend.Enabled == false)
+                    {
+                        btnSend_Click(sender, e);
+                        txtbarcode.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -223,8 +229,9 @@ namespace WindowsFormsApp1
             {
                 if (tcpClient != null && tcpClient.Connected)
                 {
+                    btnStartPrint.Enabled = false;
                     txtMessage.Text = "<STX>STAR<ETX>";
-                    btnSend_Click(sender, e);
+                    btnStopPrint.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -240,8 +247,9 @@ namespace WindowsFormsApp1
             {
                 if (tcpClient != null && tcpClient.Connected)
                 {
+                    btnStartPrint.Enabled = true;
                     txtMessage.Text = "<STX>STOP<ETX>";
-                    btnSend_Click(sender, e);
+                    btnStopPrint.Enabled = false;
                 }
             }
             catch (Exception ex)
