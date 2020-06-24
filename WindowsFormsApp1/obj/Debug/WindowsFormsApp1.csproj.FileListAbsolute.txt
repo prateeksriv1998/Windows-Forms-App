@@ -8,4 +8,3 @@ C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Window
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
-C:\Users\Prateek\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache

@@ -52,6 +52,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F9B4388481FF47FD8B8872E5DFBE7ACA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_50392370ECA9DE42A3BA02F9431477D9"
         "MsmSig" = "8:_UNDEFINED"
@@ -304,6 +310,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9B4388481FF47FD8B8872E5DFBE7ACA"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Downloads\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_EA291257EF024D94AEC6CAA904BAAB31"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -361,7 +387,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Prateek Demo App"
         "ProductCode" = "8:{B51CE425-929F-4046-B53A-52BA5FF892D7}"
-        "PackageCode" = "8:{4080192F-F53C-4563-A18E-D526C03A2EF1}"
+        "PackageCode" = "8:{0750EBEC-00D1-49BA-963E-B4860BCEEC25}"
         "UpgradeCode" = "8:{15845FD8-CE67-4931-8233-34742839AA56}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -492,7 +518,7 @@
             "Target" = "8:_F40BDA07D8BF44048EDFF7A782DE0259"
             "Folder" = "8:_4F6EF518DBCF4EC0B21D63F7359C4FC5"
             "WorkingFolder" = "8:_EA291257EF024D94AEC6CAA904BAAB31"
-            "Icon" = "8:"
+            "Icon" = "8:_F9B4388481FF47FD8B8872E5DFBE7ACA"
             "Feature" = "8:"
             }
         }

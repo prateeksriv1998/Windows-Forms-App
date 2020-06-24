@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             {
                 if (!string.IsNullOrEmpty(txtsheet.Text))
                 {
-                    string constr = $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='{txtfileupload.Text}'; Extended Properties = Excel 12.0; ";
+                    string constr = $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='{txtfileupload.Text}'; Extended Properties = Excel 12.0;";
                     OleDbConnection con = new OleDbConnection(constr);
                     OleDbDataAdapter da = new OleDbDataAdapter($"select * from [{txtsheet.Text}$]", con);
                     DataTable dt = new DataTable();
@@ -80,7 +80,6 @@ namespace WindowsFormsApp1
                             {
                                 msg += dr.Cells[i].Value + ";";
                             }
-                            msg = msg.Remove(msg.Length - 1, 1);
                             txtMessage.Text = $"<STX>DATA;{msg}<ETX>";
                             break;
                         }
@@ -230,7 +229,7 @@ namespace WindowsFormsApp1
                 if (tcpClient != null && tcpClient.Connected)
                 {
                     btnStartPrint.Enabled = false;
-                    txtMessage.Text = "<STX>STAR<ETX>";
+                    txtMessage.Text = "<STX>STAR;<ETX>";
                     btnStopPrint.Enabled = true;
                 }
             }
@@ -248,7 +247,7 @@ namespace WindowsFormsApp1
                 if (tcpClient != null && tcpClient.Connected)
                 {
                     btnStartPrint.Enabled = true;
-                    txtMessage.Text = "<STX>STOP<ETX>";
+                    txtMessage.Text = "<STX>STOP;<ETX>";
                     btnStopPrint.Enabled = false;
                 }
             }
